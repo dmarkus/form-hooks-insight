@@ -1,0 +1,14 @@
+.error {
+  color: #bf1650;
+  font-size: 14px;
+  font-weight: 500;
+
+  &:empty {
+    display: none;
+  }
+
+  &::before {
+    display: inline;
+    content: "⚠ ";
+  }
+}

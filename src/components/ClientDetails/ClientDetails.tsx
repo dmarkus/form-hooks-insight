@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Client } from "../../types/client";
 import { clientSchema } from "../../types/client.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
 export const ClientDetails = () => {
   const {
@@ -18,10 +19,10 @@ export const ClientDetails = () => {
     <form onSubmit={onSubmit}>
       <label>First Name</label>
       <input {...register("firstName")} maxLength={50} />
-        <p>{errors.firstName?.message}</p>
+      <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
       <label>Last Name</label>
       <input {...register("lastName")} maxLength={50} />
-        <label>Gender</label>
+      <label>Gender</label>
       <select {...register("gender")}>
         <option value="female">female</option>
         <option value="male">male</option>
