@@ -1,33 +1,31 @@
 import * as React from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Client } from "../../types/client";
+import { clientSchema } from "../../types/client.schema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const ClientDetails = () => {
   const {
-    control,
     register,
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<Client>();
+  } = useForm<Client>({ resolver: yupResolver(clientSchema), mode: "onBlur" });
 
   const onSubmit = handleSubmit((data) => console.log(data));
-  const firstName = useWatch({
-    control,
-    name: ["firstName", "lastName", ], // without supply name will watch the entire form, or ['firstName', 'lastName'] to watch both
-  });
 
-  console.log("firstName", firstName);
   return (
     <form onSubmit={onSubmit}>
       <label>First Name</label>
       <input {...register("firstName")} maxLength={50} />
+        <p>{errors.firstName?.message}</p>
       <label>Last Name</label>
       <input {...register("lastName")} maxLength={50} />
-        <select {...register("gender")}>
-            <option value="female">female</option>
-            <option value="male">male</option>
-        </select>
+        <label>Gender</label>
+      <select {...register("gender")}>
+        <option value="female">female</option>
+        <option value="male">male</option>
+      </select>
 
       <button
         type="button"
