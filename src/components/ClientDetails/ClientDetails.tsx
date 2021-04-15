@@ -4,9 +4,11 @@ import { Client } from "../../types/client";
 import { clientSchema } from "../../types/client.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { YesNoInput } from "../YesNoInput/YesNoInput";
 
 export const ClientDetails = () => {
   const {
+    control,
     register,
     setValue,
     handleSubmit,
@@ -22,21 +24,20 @@ export const ClientDetails = () => {
       <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
       <label>Last Name</label>
       <input {...register("lastName")} maxLength={50} />
+      <ErrorMessage>{errors.lastName?.message}</ErrorMessage>
       <label>Gender</label>
       <select {...register("gender")}>
+        <option></option>
         <option value="female">female</option>
         <option value="male">male</option>
       </select>
+      <ErrorMessage>{errors.gender?.message}</ErrorMessage>
 
-      <button
-        type="button"
-        onClick={() => {
-          setValue("firstName", "luo");
-          console.log(errors);
-        }}
-      >
-        SetValue
-      </button>
+      <label>Join our mailing list</label>
+      <YesNoInput<Client> control={control} name="isNewsletterAllowed" />
+      <ErrorMessage>{errors.isNewsletterAllowed?.message}</ErrorMessage>
+
+      <input type="submit" />
     </form>
   );
 };
