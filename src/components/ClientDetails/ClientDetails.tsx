@@ -5,6 +5,7 @@ import { clientSchema } from "../../types/client.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { YesNoInput } from "../YesNoInput/YesNoInput";
+import { useWatch } from "react-hook-form";
 
 export const ClientDetails = () => {
   const {
@@ -15,6 +16,11 @@ export const ClientDetails = () => {
     formState: { errors },
   } = useForm<Client>({ resolver: yupResolver(clientSchema), mode: "onBlur" });
 
+  const isNewsletterAllowed = useWatch({
+    control,
+    name: "isNewsletterAllowed",
+    defaultValue: false,
+  });
   const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
@@ -22,9 +28,11 @@ export const ClientDetails = () => {
       <label>First Name</label>
       <input {...register("firstName")} maxLength={50} />
       <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
+
       <label>Last Name</label>
       <input {...register("lastName")} maxLength={50} />
       <ErrorMessage>{errors.lastName?.message}</ErrorMessage>
+
       <label>Gender</label>
       <select {...register("gender")}>
         <option></option>
@@ -36,6 +44,14 @@ export const ClientDetails = () => {
       <label>Join our mailing list</label>
       <YesNoInput<Client> control={control} name="isNewsletterAllowed" />
       <ErrorMessage>{errors.isNewsletterAllowed?.message}</ErrorMessage>
+
+      {isNewsletterAllowed && (
+        <>
+          <label>Email</label>
+          <input {...register("email")} maxLength={50} />
+          <ErrorMessage>{errors.email?.message}</ErrorMessage>
+        </>
+      )}
 
       <input type="submit" />
     </form>

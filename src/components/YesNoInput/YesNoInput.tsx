@@ -12,7 +12,7 @@ export const YesNoInput = <FormValues,>({
   name,
 }: YesNoInputProps<FormValues>) => (
   <Controller
-      defaultValue=""
+    defaultValue=""
     control={control}
     name={name}
     render={({ field }) => (
