@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { YesNoInput } from "../YesNoInput/YesNoInput";
 import { useWatch } from "react-hook-form";
+import { Advisor } from "../../types/advisor";
 
 export const ClientDetails = () => {
   const {
@@ -35,11 +36,28 @@ export const ClientDetails = () => {
 
       <label>Gender</label>
       <select {...register("gender")}>
-        <option></option>
+        <option value="" />
         <option value="female">female</option>
         <option value="male">male</option>
       </select>
       <ErrorMessage>{errors.gender?.message}</ErrorMessage>
+
+      <label>Advisor</label>
+      <select {...register("advisor")}>
+        <option value="" />
+        <option value={Advisor.James}>James</option>
+        <option value={Advisor.Mary}>Mary</option>
+      </select>
+      <ErrorMessage>{errors.advisor?.message}</ErrorMessage>
+
+      <button
+        type="button"
+        onClick={() => {
+          setValue("advisor", "james");
+        }}
+      >
+        Put me!
+      </button>
 
       <label>Join our mailing list</label>
       <YesNoInput<Client> control={control} name="isNewsletterAllowed" />
