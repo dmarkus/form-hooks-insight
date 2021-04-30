@@ -60,7 +60,11 @@ export const ClientDetails = () => {
       </button>
 
       <label htmlFor="isNewsletterAllowed">Join our mailing list</label>
-      <YesNoInput<Client> id="isNewsletterAllowed" control={control} name="isNewsletterAllowed" />
+      <YesNoInput<Client>
+        id="isNewsletterAllowed"
+        control={control}
+        name="isNewsletterAllowed"
+      />
       <ErrorMessage>{errors.isNewsletterAllowed?.message}</ErrorMessage>
 
       {isNewsletterAllowed && (
