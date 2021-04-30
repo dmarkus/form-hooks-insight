@@ -26,24 +26,24 @@ export const ClientDetails = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <label>First Name</label>
-      <input {...register("firstName")} maxLength={50} />
+      <label htmlFor="firstName">First Name</label>
+      <input id="firstName" {...register("firstName")} maxLength={50} />
       <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
 
-      <label>Last Name</label>
-      <input {...register("lastName")} maxLength={50} />
+      <label htmlFor="lastName">Last Name</label>
+      <input id="lastName" {...register("lastName")} maxLength={50} />
       <ErrorMessage>{errors.lastName?.message}</ErrorMessage>
 
-      <label>Gender</label>
-      <select {...register("gender")}>
+      <label htmlFor="gender">Gender</label>
+      <select id="gender" {...register("gender")}>
         <option value="" />
         <option value="female">female</option>
         <option value="male">male</option>
       </select>
       <ErrorMessage>{errors.gender?.message}</ErrorMessage>
 
-      <label>Advisor</label>
-      <select {...register("advisor")}>
+      <label htmlFor="advisor">Advisor</label>
+      <select id="advisor" {...register("advisor")}>
         <option value="" />
         <option value={Advisor.James}>James</option>
         <option value={Advisor.Mary}>Mary</option>
@@ -59,14 +59,14 @@ export const ClientDetails = () => {
         Put me!
       </button>
 
-      <label>Join our mailing list</label>
-      <YesNoInput<Client> control={control} name="isNewsletterAllowed" />
+      <label htmlFor="isNewsletterAllowed">Join our mailing list</label>
+      <YesNoInput<Client> id="isNewsletterAllowed" control={control} name="isNewsletterAllowed" />
       <ErrorMessage>{errors.isNewsletterAllowed?.message}</ErrorMessage>
 
       {isNewsletterAllowed && (
         <>
-          <label>Email</label>
-          <input {...register("email")} maxLength={50} />
+          <label htmlFor="email">Email</label>
+          <input id="email" {...register("email")} maxLength={50} />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
         </>
       )}
