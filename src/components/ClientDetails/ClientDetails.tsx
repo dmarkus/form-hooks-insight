@@ -25,7 +25,7 @@ export const ClientDetails = () => {
   const onSubmit = handleSubmit((data) => console.log(data));
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} data-testid="form">
       <label htmlFor="firstName">First Name</label>
       <input id="firstName" {...register("firstName")} maxLength={50} />
       <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
