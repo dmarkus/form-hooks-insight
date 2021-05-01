@@ -14,7 +14,7 @@ export const ClientDetails = () => {
     register,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { isSubmitting, errors },
   } = useForm<Client>({ resolver: yupResolver(clientSchema), mode: "onBlur" });
 
   const isNewsletterAllowed = useWatch({
@@ -75,7 +75,7 @@ export const ClientDetails = () => {
         </>
       )}
 
-      <input type="submit" />
+      <input disabled={isSubmitting} type="submit" />
     </form>
   );
 };
