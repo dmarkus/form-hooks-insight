@@ -29,6 +29,8 @@ We will check if  react-hook-form gracefully handle that demands.
 # Performance
 To visually see when form is rerender we can use DevTool highlight updates.
 
+![DevTools/Profiler tab/Highlight option](public/profiler-highlight-updates-option.png)
+
 If we don't need watchers or validations on `onChange` event 
 than changing single field doesn't cause rerendering other fields nor form component.
 
